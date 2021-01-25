@@ -43,15 +43,17 @@ IF(WIN32)
     target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 ELSE(UNIX)
 
-  LibImport("common" "lib")
+  SET(CommonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/lib/fsync.c")
 
-  SET(ExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-code.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-gram.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-skel.c")
+  LibImportExclude("common" "lib" ${CommonExcludeList})
 
-  LibImportExclude("libbison" "src" ${ExcludeList})
+  SET(libbisonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-code.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-gram.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-skel.c")
+
+  LibImportExclude("libbison" "src" ${libbisonExcludeList})
 
   target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib")
   target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
-  
+
   target_link_libraries(libbison common)
 
   ExeImport("tools" "libbison")
