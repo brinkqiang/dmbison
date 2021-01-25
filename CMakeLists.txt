@@ -139,7 +139,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/complain.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/conflicts.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/counterexample.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/derivaticn.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/derivation.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/derives.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/files.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/fixits.c
@@ -149,7 +149,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/graphviz.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ielr.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/lalr.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/lccaticn.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/lccation.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/lr0.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/lssi.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c
@@ -164,7 +164,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/print.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/reader.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/reduce.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/relaticn.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/relation.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-ccde-c.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-gram-c.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-skel-c.c
