@@ -149,7 +149,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/graphviz.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ielr.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/lalr.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/lccation.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/location.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/lr0.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/lssi.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/main.c
