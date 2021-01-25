@@ -158,7 +158,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/nullable.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/output.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/parse-gram.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/parse-simulaticn.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/parse-simulation.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/print-graph.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/print-xml.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/print.c
