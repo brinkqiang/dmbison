@@ -49,12 +49,5 @@ ELSE(UNIX)
 
   ExeImport("tools" "libbison")
 
-  ADD_CUSTOM_TARGET(
-      dmbison_autogen
-      COMMAND ./configure && make
-      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-      COMMENT "Running dmbison configure"
-    )
-
-  ADD_DEPENDENCIES(libbison dmbison_autogen)
+  ModuleConfigure("libbison" "${CMAKE_CURRENT_SOURCE_DIR}")
 ENDIF(WIN32)
