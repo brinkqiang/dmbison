@@ -1,3 +1,0 @@
-data/glr.c
-data/yacc.c
-lib/yyerror.c
