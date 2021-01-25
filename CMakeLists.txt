@@ -170,7 +170,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-skel-c.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/state.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/state-item.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/strversicn.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/strversion.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/symlist.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/symtab.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/tables.c
