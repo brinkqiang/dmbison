@@ -29,6 +29,7 @@
 
 // Please syntax-check.
 #include <config.h>
+#include <system.h>
 
 static const char *const msgid[] =
   {
