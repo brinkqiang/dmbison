@@ -131,7 +131,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/lib/vasnprintf.c)
 
   SET(libbisonList 
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/AnnctaticnList.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/AnnotationList.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/InadequacyList.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/Sbitset.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/asscc.c
