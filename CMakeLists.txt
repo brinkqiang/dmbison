@@ -48,6 +48,7 @@ ELSE(UNIX)
   LibImportExclude("libbison" "src" ${ExcludeList})
 
   target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib")
+  target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
   ExeImport("tools" "libbison")
 
