@@ -165,7 +165,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/reader.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/reduce.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/relation.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-ccde-c.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-code-c.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-gram-c.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/scan-skel-c.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/state.c
