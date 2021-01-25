@@ -43,7 +43,7 @@ IF(WIN32)
     target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 ELSE(UNIX)
 
-  SET(ExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cc" "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
+  SET(ExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-code.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-gram.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-skel.c")
 
   LibImportExclude("libbison" "src" ${ExcludeList})
 
