@@ -355,7 +355,7 @@ AC_CONFIG_FILES([Makefile
 # remove the actual files and distcheck fails.
 AC_CONFIG_COMMANDS_PRE([
   case $am__api_version in
-    1.14*|1.15*) gl_LIBOBJS=`echo "$gl_LIBOBJS" | sed -e 's, lib/, lib/lib_libbison_a-,g'`;;
+    1.13*|1.14*|1.15*) gl_LIBOBJS=`echo "$gl_LIBOBJS" | sed -e 's, lib/, lib/lib_libbison_a-,g'`;;
     *)           gl_LIBOBJS=`echo "$gl_LIBOBJS" | sed -e 's, lib/, lib/libbison_a-,g'`;;
   esac
 ])
