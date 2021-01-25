@@ -14,30 +14,33 @@ SET(DMBISON_VERSION "${DMBISON_VERSION_MAJOR}.${DMBISON_VERSION_MINOR}.${DMBISON
 
 MESSAGE(STATUS "VERSION: ${DMBISON_VERSION}")
 
-OPTION(USE_DMFLEX "use dmflex" OFF)
+OPTION(USE_DMBISON "use dmbison" OFF)
 
 IF(WIN32)
     add_definitions(-D_LIB)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
-    SET(CommonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/common/regexec.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/common/regcomp.c")
+    SET(CommonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common/regexec.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common/regcomp.c")
 
-    LibImportExclude("common" "win/dmflex/common" "${CommonExcludeList}")
+    LibImportExclude("common" "win/dmbison/common" "${CommonExcludeList}")
 
-    target_include_directories(common PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/common")
+    target_include_directories(common PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 
-    SET(libflexExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/src/libmain.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/src/libyywrap.c")
+    SET(libbisonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-code.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-gram.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-skel.c")
 
-    LibImportExclude("libflex" "win/dmflex/src" "${libflexExcludeList}")
+    LibImportExclude("libbison" "win/dmbison/src" "${libbisonExcludeList}")
 
-    target_include_directories(libflex PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/src")
-    target_link_libraries(libflex common)
+    target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison")
+    target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
+    target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
+
+    target_link_libraries(libbison common)
 
     add_definitions(-D_CONSOLE)
-    ExeImport("wintools" "libflex")
-
-    target_include_directories(dmflex PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/src")
-    target_include_directories(dmflex PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmflex/common")
+    ExeImport("wintools" "libbison;common")
+    target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison")
+    target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
+    target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 ELSE(UNIX)
 
   SET(ExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cc" "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
