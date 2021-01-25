@@ -136,9 +136,9 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/Sbitset.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/assoc.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/closure.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/ccmplain.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/ccnflicts.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/ccunterexample.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/complain.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/conflicts.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/counterexample.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/derivaticn.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/derives.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/files.c
