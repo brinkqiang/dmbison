@@ -47,9 +47,13 @@ ELSE(UNIX)
 
   LibImportExclude("common" "lib" ${CommonExcludeList})
 
+  set_property(TARGET common PROPERTY C_STANDARD 99)
+
   SET(libbisonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/src/main.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-code.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-gram.c" "${CMAKE_CURRENT_SOURCE_DIR}/src/scan-skel.c")
 
   LibImportExclude("libbison" "src" ${libbisonExcludeList})
+
+  set_property(TARGET libbison PROPERTY C_STANDARD 99)
 
   target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib")
   target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
