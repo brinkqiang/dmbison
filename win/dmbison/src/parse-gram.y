@@ -34,7 +34,7 @@
 %code top
 {
   /* On column 0 to please syntax-check.  */
-#include <config.h>
+#include <bison_config.h>
 }
 
 %code

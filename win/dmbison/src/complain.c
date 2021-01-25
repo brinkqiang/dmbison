@@ -19,7 +19,7 @@
 /* Based on error.c and error.h,
    written by David MacKenzie <djm@gnu.ai.mit.edu>.  */
 
-#include <config.h>
+#include <bison_config.h>
 #include "system.h"
 
 #include <argmatch.h>

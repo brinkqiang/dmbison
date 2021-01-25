@@ -22,7 +22,7 @@
 /* Find which rules need lookahead in each state, and which lookahead
    tokens they accept.  */
 
-#include <config.h>
+#include <bison_config.h>
 #include "system.h"
 
 #include <bitset.h>

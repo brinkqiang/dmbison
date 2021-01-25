@@ -21,7 +21,7 @@
 #include <io.h>
 #include <fcntl.h>
 
-#include <config.h>
+#include <bison_config.h>
 #include "system.h"
 
 #include <bitset.h>

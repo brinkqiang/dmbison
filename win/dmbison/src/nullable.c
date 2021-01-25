@@ -23,7 +23,7 @@
    the null string.  NULLABLE[I - NTOKENS] is nonzero if symbol I can
    do so.  */
 
-#include <config.h>
+#include <bison_config.h>
 #include "system.h"
 
 #include "getargs.h"

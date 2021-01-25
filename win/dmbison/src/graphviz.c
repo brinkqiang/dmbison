@@ -20,7 +20,7 @@
 
 /* Written by Paul Eggert and Satya Kiran Popuri.  */
 
-#include <config.h>
+#include <bison_config.h>
 #include "system.h"
 
 #include <quotearg.h>

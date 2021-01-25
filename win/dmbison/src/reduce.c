@@ -25,7 +25,7 @@
 /* Don't eliminate unreachable terminals: They may be used by the
    user's parser.  */
 
-#include <config.h>
+#include <bison_config.h>
 #include "system.h"
 
 #include <bitset.h>

@@ -67,7 +67,7 @@
 #line 35 "src/parse-gram.y"
 
   /* On column 0 to please syntax-check.  */
-#include <config.h>
+#include <bison_config.h>
 
 #line 73 "src/parse-gram.c"
 /* Substitute the type names.  */
