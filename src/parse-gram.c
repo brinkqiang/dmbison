@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.7.4.  */
+/* A Bison parser, made by GNU Bison 3.7.3.7-d831b.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
@@ -45,11 +45,11 @@
    define necessary library symbols; they are noted "INFRINGES ON
    USER NAME SPACE" below.  */
 
-/* Identify Bison output, and Bison version.  */
-#define YYBISON 30704
+/* Identify Bison output.  */
+#define YYBISON 30703
 
-/* Bison version string.  */
-#define YYBISON_VERSION "3.7.4"
+/* Bison version.  */
+#define YYBISON_VERSION "3.7.3.7-d831b"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -64,12 +64,10 @@
 #define YYPULL 1
 
 /* "%code top" blocks.  */
-#line 35 "src/parse-gram.y"
 
   /* On column 0 to please syntax-check.  */
 #include <config.h>
 
-#line 73 "src/parse-gram.c"
 /* Substitute the type names.  */
 #define YYSTYPE         GRAM_STYPE
 #define YYLTYPE         GRAM_LTYPE
@@ -102,7 +100,7 @@
 #  endif
 # endif
 
-#include "parse-gram.h"
+#include "src/parse-gram.h"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -216,7 +214,6 @@ typedef enum yysymbol_kind_t yysymbol_kind_t;
 
 
 /* Unqualified %code blocks.  */
-#line 41 "src/parse-gram.y"
 
   #include "system.h"
 
@@ -320,7 +317,6 @@ typedef enum yysymbol_kind_t yysymbol_kind_t;
 
   /* Discard the latest unquoted string.  */
   static void unquote_free (char *last_string);
-#line 279 "src/parse-gram.y"
 
   /** Add a lex-param and/or a parse-param.
    *
@@ -331,7 +327,6 @@ typedef enum yysymbol_kind_t yysymbol_kind_t;
   static void add_param (param_type type, char *decl, location loc);
   static param_type current_param = param_none;
 
-#line 335 "src/parse-gram.c"
 
 #ifdef short
 # undef short
@@ -1074,117 +1069,80 @@ yy_symbol_value_print (FILE *yyo,
     YYPRINT (yyo, yytoknum[yykind], *yyvaluep);
 # endif
 /* "%code pre-printer" blocks.  */
-#line 231 "src/parse-gram.y"
 tron (yyo);
 
-#line 1081 "src/parse-gram.c"
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   switch (yykind)
     {
     case YYSYMBOL_STRING: /* "string"  */
-#line 238 "src/parse-gram.y"
          { fputs (((*yyvaluep).STRING), yyo); }
-#line 1088 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_TSTRING: /* "translatable string"  */
-#line 238 "src/parse-gram.y"
          { fputs (((*yyvaluep).TSTRING), yyo); }
-#line 1094 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_PERCENT_ERROR_VERBOSE: /* "%error-verbose"  */
-#line 245 "src/parse-gram.y"
          { fputs (((*yyvaluep).PERCENT_ERROR_VERBOSE), yyo); }
-#line 1100 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_PERCENT_FLAG: /* "%<flag>"  */
-#line 248 "src/parse-gram.y"
          { fprintf (yyo, "%%%s", ((*yyvaluep).PERCENT_FLAG)); }
-#line 1106 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_PERCENT_FILE_PREFIX: /* "%file-prefix"  */
-#line 245 "src/parse-gram.y"
          { fputs (((*yyvaluep).PERCENT_FILE_PREFIX), yyo); }
-#line 1112 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_PERCENT_NAME_PREFIX: /* "%name-prefix"  */
-#line 245 "src/parse-gram.y"
          { fputs (((*yyvaluep).PERCENT_NAME_PREFIX), yyo); }
-#line 1118 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_PERCENT_PURE_PARSER: /* "%pure-parser"  */
-#line 245 "src/parse-gram.y"
          { fputs (((*yyvaluep).PERCENT_PURE_PARSER), yyo); }
-#line 1124 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_BRACED_CODE: /* "{...}"  */
-#line 238 "src/parse-gram.y"
          { fputs (((*yyvaluep).BRACED_CODE), yyo); }
-#line 1130 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_BRACED_PREDICATE: /* "%?{...}"  */
-#line 238 "src/parse-gram.y"
          { fputs (((*yyvaluep).BRACED_PREDICATE), yyo); }
-#line 1136 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_BRACKETED_ID: /* "[identifier]"  */
-#line 246 "src/parse-gram.y"
          { fprintf (yyo, "[%s]", ((*yyvaluep).BRACKETED_ID)); }
-#line 1142 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_CHAR_LITERAL: /* "character literal"  */
-#line 235 "src/parse-gram.y"
          { fputs (char_name (((*yyvaluep).CHAR_LITERAL)), yyo); }
-#line 1148 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_EPILOGUE: /* "epilogue"  */
-#line 238 "src/parse-gram.y"
          { fputs (((*yyvaluep).EPILOGUE), yyo); }
-#line 1154 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_ID: /* "identifier"  */
-#line 245 "src/parse-gram.y"
          { fputs (((*yyvaluep).ID), yyo); }
-#line 1160 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_ID_COLON: /* "identifier:"  */
-#line 247 "src/parse-gram.y"
          { fprintf (yyo, "%s:", ((*yyvaluep).ID_COLON)); }
-#line 1166 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_PROLOGUE: /* "%{...%}"  */
-#line 238 "src/parse-gram.y"
          { fputs (((*yyvaluep).PROLOGUE), yyo); }
-#line 1172 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_TAG: /* "<tag>"  */
-#line 249 "src/parse-gram.y"
          { fprintf (yyo, "<%s>", ((*yyvaluep).TAG)); }
-#line 1178 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_INT_LITERAL: /* "integer literal"  */
-#line 252 "src/parse-gram.y"
          { fprintf (yyo, "%d", ((*yyvaluep).INT_LITERAL)); }
-#line 1184 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_PERCENT_PARAM: /* "%param"  */
-#line 291 "src/parse-gram.y"
 {
   switch (((*yyvaluep).PERCENT_PARAM))
     {
@@ -1197,113 +1155,77 @@ tron (yyo);
       case param_none: aver (false); break;
     }
 }
-#line 1201 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_code_props_type: /* code_props_type  */
-#line 424 "src/parse-gram.y"
          { fprintf (yyo, "%s", code_props_type_string (((*yyvaluep).code_props_type))); }
-#line 1207 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_74_tag_opt: /* tag.opt  */
-#line 245 "src/parse-gram.y"
          { fputs (((*yyvaluep).yykind_74), yyo); }
-#line 1213 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_generic_symlist: /* generic_symlist  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).generic_symlist), yyo); }
-#line 1219 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_generic_symlist_item: /* generic_symlist_item  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).generic_symlist_item), yyo); }
-#line 1225 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_tag: /* tag  */
-#line 249 "src/parse-gram.y"
          { fprintf (yyo, "<%s>", ((*yyvaluep).tag)); }
-#line 1231 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_nterm_decls: /* nterm_decls  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).nterm_decls), yyo); }
-#line 1237 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_token_decls: /* token_decls  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).token_decls), yyo); }
-#line 1243 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_80_token_decl_1: /* token_decl.1  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).yykind_80), yyo); }
-#line 1249 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_token_decl: /* token_decl  */
-#line 255 "src/parse-gram.y"
          { fprintf (yyo, "%s", ((*yyvaluep).token_decl) ? ((*yyvaluep).token_decl)->tag : "<NULL>"); }
-#line 1255 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_82_int_opt: /* int.opt  */
-#line 252 "src/parse-gram.y"
          { fprintf (yyo, "%d", ((*yyvaluep).yykind_82)); }
-#line 1261 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_alias: /* alias  */
-#line 255 "src/parse-gram.y"
          { fprintf (yyo, "%s", ((*yyvaluep).alias) ? ((*yyvaluep).alias)->tag : "<NULL>"); }
-#line 1267 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_token_decls_for_prec: /* token_decls_for_prec  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).token_decls_for_prec), yyo); }
-#line 1273 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_85_token_decl_for_prec_1: /* token_decl_for_prec.1  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).yykind_85), yyo); }
-#line 1279 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_token_decl_for_prec: /* token_decl_for_prec  */
-#line 255 "src/parse-gram.y"
          { fprintf (yyo, "%s", ((*yyvaluep).token_decl_for_prec) ? ((*yyvaluep).token_decl_for_prec)->tag : "<NULL>"); }
-#line 1285 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_symbol_decls: /* symbol_decls  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).symbol_decls), yyo); }
-#line 1291 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_88_symbol_decl_1: /* symbol_decl.1  */
-#line 261 "src/parse-gram.y"
          { symbol_list_syms_print (((*yyvaluep).yykind_88), yyo); }
-#line 1297 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_variable: /* variable  */
-#line 245 "src/parse-gram.y"
          { fputs (((*yyvaluep).variable), yyo); }
-#line 1303 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_value: /* value  */
-#line 740 "src/parse-gram.y"
 {
   switch (((*yyvaluep).value).kind)
     {
@@ -1312,31 +1234,22 @@ tron (yyo);
     case muscle_string:  fprintf (yyo, "\"%s\"", ((*yyvaluep).value).chars); break;
     }
 }
-#line 1316 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_id: /* id  */
-#line 255 "src/parse-gram.y"
          { fprintf (yyo, "%s", ((*yyvaluep).id) ? ((*yyvaluep).id)->tag : "<NULL>"); }
-#line 1322 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_id_colon: /* id_colon  */
-#line 256 "src/parse-gram.y"
          { fprintf (yyo, "%s:", ((*yyvaluep).id_colon)->tag); }
-#line 1328 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_symbol: /* symbol  */
-#line 255 "src/parse-gram.y"
          { fprintf (yyo, "%s", ((*yyvaluep).symbol) ? ((*yyvaluep).symbol)->tag : "<NULL>"); }
-#line 1334 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_string_as_id: /* string_as_id  */
-#line 255 "src/parse-gram.y"
          { fprintf (yyo, "%s", ((*yyvaluep).string_as_id) ? ((*yyvaluep).string_as_id)->tag : "<NULL>"); }
-#line 1340 "src/parse-gram.c"
         break;
 
       default:
@@ -1344,10 +1257,8 @@ tron (yyo);
     }
   YY_IGNORE_MAYBE_UNINITIALIZED_END
 /* "%code post-printer" blocks.  */
-#line 232 "src/parse-gram.y"
 troff (yyo);
 
-#line 1351 "src/parse-gram.c"
 }
 
 
@@ -1788,57 +1699,39 @@ yydestruct (const char *yymsg,
   switch (yykind)
     {
     case YYSYMBOL_generic_symlist: /* generic_symlist  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).generic_symlist)); }
-#line 1794 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_generic_symlist_item: /* generic_symlist_item  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).generic_symlist_item)); }
-#line 1800 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_nterm_decls: /* nterm_decls  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).nterm_decls)); }
-#line 1806 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_token_decls: /* token_decls  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).token_decls)); }
-#line 1812 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_80_token_decl_1: /* token_decl.1  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).yykind_80)); }
-#line 1818 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_token_decls_for_prec: /* token_decls_for_prec  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).token_decls_for_prec)); }
-#line 1824 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_85_token_decl_for_prec_1: /* token_decl_for_prec.1  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).yykind_85)); }
-#line 1830 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_symbol_decls: /* symbol_decls  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).symbol_decls)); }
-#line 1836 "src/parse-gram.c"
         break;
 
     case YYSYMBOL_88_symbol_decl_1: /* symbol_decl.1  */
-#line 260 "src/parse-gram.y"
             { symbol_list_free (((*yyvaluep).yykind_88)); }
-#line 1842 "src/parse-gram.c"
         break;
 
       default:
@@ -1937,7 +1830,6 @@ YYLTYPE yylloc = yyloc_default;
   yychar = GRAM_EMPTY; /* Cause a token to be read.  */
 
 /* User initialization code.  */
-#line 160 "src/parse-gram.y"
 {
   /* Bison's grammar can initial empty locations, hence a default
      location is needed. */
@@ -1945,7 +1837,6 @@ YYLTYPE yylloc = yyloc_default;
   boundary_set (&yylloc.end, grammar_file, 1, 1, 1);
 }
 
-#line 1949 "src/parse-gram.c"
 
   yylsp[0] = yylloc;
   goto yysetstate;
@@ -2162,192 +2053,135 @@ yyreduce:
     switch (yyn)
       {
   case 6: /* prologue_declaration: "%{...%}"  */
-#line 327 "src/parse-gram.y"
     {
       muscle_code_grow (union_seen ? "post_prologue" : "pre_prologue",
                         translate_code ((yyvsp[0].PROLOGUE), (yylsp[0]), true), (yylsp[0]));
       code_scanner_last_string_free ();
     }
-#line 2172 "src/parse-gram.c"
     break;
 
   case 7: /* prologue_declaration: "%<flag>"  */
-#line 333 "src/parse-gram.y"
     {
       muscle_percent_define_ensure ((yyvsp[0].PERCENT_FLAG), (yylsp[0]), true);
     }
-#line 2180 "src/parse-gram.c"
     break;
 
   case 8: /* prologue_declaration: "%define" variable value  */
-#line 337 "src/parse-gram.y"
     {
       muscle_percent_define_insert ((yyvsp[-1].variable), (yyloc), (yyvsp[0].value).kind, (yyvsp[0].value).chars,
                                     MUSCLE_PERCENT_DEFINE_GRAMMAR_FILE);
     }
-#line 2189 "src/parse-gram.c"
     break;
 
   case 9: /* prologue_declaration: "%defines"  */
-#line 341 "src/parse-gram.y"
                                    { defines_flag = true; }
-#line 2195 "src/parse-gram.c"
     break;
 
   case 10: /* prologue_declaration: "%defines" "string"  */
-#line 342 "src/parse-gram.y"
                                    { handle_defines ((yyvsp[0].STRING)); }
-#line 2201 "src/parse-gram.c"
     break;
 
   case 11: /* prologue_declaration: "%error-verbose"  */
-#line 343 "src/parse-gram.y"
                                    { handle_error_verbose (&(yyloc), (yyvsp[0].PERCENT_ERROR_VERBOSE)); }
-#line 2207 "src/parse-gram.c"
     break;
 
   case 12: /* prologue_declaration: "%expect" "integer literal"  */
-#line 344 "src/parse-gram.y"
                                    { expected_sr_conflicts = (yyvsp[0].INT_LITERAL); }
-#line 2213 "src/parse-gram.c"
     break;
 
   case 13: /* prologue_declaration: "%expect-rr" "integer literal"  */
-#line 345 "src/parse-gram.y"
                                    { expected_rr_conflicts = (yyvsp[0].INT_LITERAL); }
-#line 2219 "src/parse-gram.c"
     break;
 
   case 14: /* prologue_declaration: "%file-prefix" "string"  */
-#line 346 "src/parse-gram.y"
                                    { handle_file_prefix (&(yyloc), &(yylsp[-1]), (yyvsp[-1].PERCENT_FILE_PREFIX), (yyvsp[0].STRING)); }
-#line 2225 "src/parse-gram.c"
     break;
 
   case 15: /* prologue_declaration: "%glr-parser"  */
-#line 348 "src/parse-gram.y"
     {
       nondeterministic_parser = true;
       glr_parser = true;
     }
-#line 2234 "src/parse-gram.c"
     break;
 
   case 16: /* prologue_declaration: "%initial-action" "{...}"  */
-#line 353 "src/parse-gram.y"
     {
       muscle_code_grow ("initial_action", translate_code ((yyvsp[0].BRACED_CODE), (yylsp[0]), false), (yylsp[0]));
       code_scanner_last_string_free ();
     }
-#line 2243 "src/parse-gram.c"
     break;
 
   case 17: /* prologue_declaration: "%language" "string"  */
-#line 357 "src/parse-gram.y"
                                 { handle_language (&(yylsp[-1]), (yyvsp[0].STRING)); }
-#line 2249 "src/parse-gram.c"
     break;
 
   case 18: /* prologue_declaration: "%name-prefix" "string"  */
-#line 358 "src/parse-gram.y"
                                 { handle_name_prefix (&(yyloc), (yyvsp[-1].PERCENT_NAME_PREFIX), (yyvsp[0].STRING)); }
-#line 2255 "src/parse-gram.c"
     break;
 
   case 19: /* prologue_declaration: "%no-lines"  */
-#line 359 "src/parse-gram.y"
                                 { no_lines_flag = true; }
-#line 2261 "src/parse-gram.c"
     break;
 
   case 20: /* prologue_declaration: "%nondeterministic-parser"  */
-#line 360 "src/parse-gram.y"
                                 { nondeterministic_parser = true; }
-#line 2267 "src/parse-gram.c"
     break;
 
   case 21: /* prologue_declaration: "%output" "string"  */
-#line 361 "src/parse-gram.y"
                                 { spec_outfile = unquote ((yyvsp[0].STRING)); gram_scanner_last_string_free (); }
-#line 2273 "src/parse-gram.c"
     break;
 
   case 22: /* $@1: %empty  */
-#line 362 "src/parse-gram.y"
            { current_param = (yyvsp[0].PERCENT_PARAM); }
-#line 2279 "src/parse-gram.c"
     break;
 
   case 23: /* prologue_declaration: "%param" $@1 params  */
-#line 362 "src/parse-gram.y"
                                           { current_param = param_none; }
-#line 2285 "src/parse-gram.c"
     break;
 
   case 24: /* prologue_declaration: "%pure-parser"  */
-#line 363 "src/parse-gram.y"
                                 { handle_pure_parser (&(yyloc), (yyvsp[0].PERCENT_PURE_PARSER)); }
-#line 2291 "src/parse-gram.c"
     break;
 
   case 25: /* prologue_declaration: "%require" "string"  */
-#line 364 "src/parse-gram.y"
                                 { handle_require (&(yylsp[0]), (yyvsp[0].STRING)); }
-#line 2297 "src/parse-gram.c"
     break;
 
   case 26: /* prologue_declaration: "%skeleton" "string"  */
-#line 365 "src/parse-gram.y"
                                 { handle_skeleton (&(yylsp[0]), (yyvsp[0].STRING)); }
-#line 2303 "src/parse-gram.c"
     break;
 
   case 27: /* prologue_declaration: "%token-table"  */
-#line 366 "src/parse-gram.y"
                                 { token_table_flag = true; }
-#line 2309 "src/parse-gram.c"
     break;
 
   case 28: /* prologue_declaration: "%verbose"  */
-#line 367 "src/parse-gram.y"
                                 { report_flag |= report_states; }
-#line 2315 "src/parse-gram.c"
     break;
 
   case 29: /* prologue_declaration: "%yacc"  */
-#line 368 "src/parse-gram.y"
                                 { handle_yacc (&(yyloc)); }
-#line 2321 "src/parse-gram.c"
     break;
 
   case 30: /* prologue_declaration: error ";"  */
-#line 369 "src/parse-gram.y"
                                 { current_class = unknown_sym; yyerrok; }
-#line 2327 "src/parse-gram.c"
     break;
 
   case 32: /* params: params "{...}"  */
-#line 374 "src/parse-gram.y"
                    { add_param (current_param, (yyvsp[0].BRACED_CODE), (yylsp[0])); }
-#line 2333 "src/parse-gram.c"
     break;
 
   case 33: /* params: "{...}"  */
-#line 375 "src/parse-gram.y"
                    { add_param (current_param, (yyvsp[0].BRACED_CODE), (yylsp[0])); }
-#line 2339 "src/parse-gram.c"
     break;
 
   case 35: /* grammar_declaration: "%start" symbol  */
-#line 386 "src/parse-gram.y"
     {
       grammar_start_symbol_set ((yyvsp[0].symbol), (yylsp[0]));
     }
-#line 2347 "src/parse-gram.c"
     break;
 
   case 36: /* grammar_declaration: code_props_type "{...}" generic_symlist  */
-#line 390 "src/parse-gram.y"
     {
       code_props code;
       code_props_symbol_action_init (&code, (yyvsp[-1].BRACED_CODE), (yylsp[-1]));
@@ -2358,27 +2192,21 @@ yyreduce:
         symbol_list_free ((yyvsp[0].generic_symlist));
       }
     }
-#line 2362 "src/parse-gram.c"
     break;
 
   case 37: /* grammar_declaration: "%default-prec"  */
-#line 401 "src/parse-gram.y"
     {
       default_prec = true;
     }
-#line 2370 "src/parse-gram.c"
     break;
 
   case 38: /* grammar_declaration: "%no-default-prec"  */
-#line 405 "src/parse-gram.y"
     {
       default_prec = false;
     }
-#line 2378 "src/parse-gram.c"
     break;
 
   case 39: /* grammar_declaration: "%code" "{...}"  */
-#line 409 "src/parse-gram.y"
     {
       /* Do not invoke muscle_percent_code_grow here since it invokes
          muscle_user_name_list_grow.  */
@@ -2386,207 +2214,149 @@ yyreduce:
                         translate_code_braceless ((yyvsp[0].BRACED_CODE), (yylsp[0])), (yylsp[0]));
       code_scanner_last_string_free ();
     }
-#line 2390 "src/parse-gram.c"
     break;
 
   case 40: /* grammar_declaration: "%code" "identifier" "{...}"  */
-#line 417 "src/parse-gram.y"
     {
       muscle_percent_code_grow ((yyvsp[-1].ID), (yylsp[-1]), translate_code_braceless ((yyvsp[0].BRACED_CODE), (yylsp[0])), (yylsp[0]));
       code_scanner_last_string_free ();
     }
-#line 2399 "src/parse-gram.c"
     break;
 
   case 41: /* code_props_type: "%destructor"  */
-#line 426 "src/parse-gram.y"
                  { (yyval.code_props_type) = destructor; }
-#line 2405 "src/parse-gram.c"
     break;
 
   case 42: /* code_props_type: "%printer"  */
-#line 427 "src/parse-gram.y"
                  { (yyval.code_props_type) = printer; }
-#line 2411 "src/parse-gram.c"
     break;
 
   case 43: /* union_name: %empty  */
-#line 437 "src/parse-gram.y"
          {}
-#line 2417 "src/parse-gram.c"
     break;
 
   case 44: /* union_name: "identifier"  */
-#line 438 "src/parse-gram.y"
          { muscle_percent_define_insert ("api.value.union.name",
                                          (yylsp[0]), muscle_keyword, (yyvsp[0].ID),
                                          MUSCLE_PERCENT_DEFINE_GRAMMAR_FILE); }
-#line 2425 "src/parse-gram.c"
     break;
 
   case 45: /* grammar_declaration: "%union" union_name "{...}"  */
-#line 445 "src/parse-gram.y"
     {
       union_seen = true;
       muscle_code_grow ("union_members", translate_code_braceless ((yyvsp[0].BRACED_CODE), (yylsp[0])), (yylsp[0]));
       code_scanner_last_string_free ();
     }
-#line 2435 "src/parse-gram.c"
     break;
 
   case 46: /* $@2: %empty  */
-#line 457 "src/parse-gram.y"
            { current_class = nterm_sym; }
-#line 2441 "src/parse-gram.c"
     break;
 
   case 47: /* symbol_declaration: "%nterm" $@2 nterm_decls  */
-#line 458 "src/parse-gram.y"
     {
       current_class = unknown_sym;
       symbol_list_free ((yyvsp[0].nterm_decls));
     }
-#line 2450 "src/parse-gram.c"
     break;
 
   case 48: /* $@3: %empty  */
-#line 462 "src/parse-gram.y"
            { current_class = token_sym; }
-#line 2456 "src/parse-gram.c"
     break;
 
   case 49: /* symbol_declaration: "%token" $@3 token_decls  */
-#line 463 "src/parse-gram.y"
     {
       current_class = unknown_sym;
       symbol_list_free ((yyvsp[0].token_decls));
     }
-#line 2465 "src/parse-gram.c"
     break;
 
   case 50: /* symbol_declaration: "%type" symbol_decls  */
-#line 468 "src/parse-gram.y"
     {
       symbol_list_free ((yyvsp[0].symbol_decls));
     }
-#line 2473 "src/parse-gram.c"
     break;
 
   case 51: /* symbol_declaration: precedence_declarator token_decls_for_prec  */
-#line 472 "src/parse-gram.y"
     {
       ++current_prec;
       for (symbol_list *list = (yyvsp[0].token_decls_for_prec); list; list = list->next)
         symbol_precedence_set (list->content.sym, current_prec, (yyvsp[-1].precedence_declarator), (yylsp[-1]));
       symbol_list_free ((yyvsp[0].token_decls_for_prec));
     }
-#line 2484 "src/parse-gram.c"
     break;
 
   case 52: /* precedence_declarator: "%left"  */
-#line 481 "src/parse-gram.y"
                 { (yyval.precedence_declarator) = left_assoc; }
-#line 2490 "src/parse-gram.c"
     break;
 
   case 53: /* precedence_declarator: "%right"  */
-#line 482 "src/parse-gram.y"
                 { (yyval.precedence_declarator) = right_assoc; }
-#line 2496 "src/parse-gram.c"
     break;
 
   case 54: /* precedence_declarator: "%nonassoc"  */
-#line 483 "src/parse-gram.y"
                 { (yyval.precedence_declarator) = non_assoc; }
-#line 2502 "src/parse-gram.c"
     break;
 
   case 55: /* precedence_declarator: "%precedence"  */
-#line 484 "src/parse-gram.y"
                 { (yyval.precedence_declarator) = precedence_assoc; }
-#line 2508 "src/parse-gram.c"
     break;
 
   case 56: /* tag.opt: %empty  */
-#line 488 "src/parse-gram.y"
          { (yyval.yykind_74) = NULL; }
-#line 2514 "src/parse-gram.c"
     break;
 
   case 57: /* tag.opt: "<tag>"  */
-#line 489 "src/parse-gram.y"
          { (yyval.yykind_74) = (yyvsp[0].TAG); }
-#line 2520 "src/parse-gram.c"
     break;
 
   case 59: /* generic_symlist: generic_symlist generic_symlist_item  */
-#line 495 "src/parse-gram.y"
                                          { (yyval.generic_symlist) = symbol_list_append ((yyvsp[-1].generic_symlist), (yyvsp[0].generic_symlist_item)); }
-#line 2526 "src/parse-gram.c"
     break;
 
   case 60: /* generic_symlist_item: symbol  */
-#line 499 "src/parse-gram.y"
             { (yyval.generic_symlist_item) = symbol_list_sym_new ((yyvsp[0].symbol), (yylsp[0])); }
-#line 2532 "src/parse-gram.c"
     break;
 
   case 61: /* generic_symlist_item: tag  */
-#line 500 "src/parse-gram.y"
             { (yyval.generic_symlist_item) = symbol_list_type_new ((yyvsp[0].tag), (yylsp[0])); }
-#line 2538 "src/parse-gram.c"
     break;
 
   case 63: /* tag: "<*>"  */
-#line 505 "src/parse-gram.y"
         { (yyval.tag) = uniqstr_new ("*"); }
-#line 2544 "src/parse-gram.c"
     break;
 
   case 64: /* tag: "<>"  */
-#line 506 "src/parse-gram.y"
         { (yyval.tag) = uniqstr_new (""); }
-#line 2550 "src/parse-gram.c"
     break;
 
   case 66: /* token_decls: token_decl.1  */
-#line 529 "src/parse-gram.y"
     {
       (yyval.token_decls) = (yyvsp[0].yykind_80);
     }
-#line 2558 "src/parse-gram.c"
     break;
 
   case 67: /* token_decls: "<tag>" token_decl.1  */
-#line 533 "src/parse-gram.y"
     {
       (yyval.token_decls) = symbol_list_type_set ((yyvsp[0].yykind_80), (yyvsp[-1].TAG));
     }
-#line 2566 "src/parse-gram.c"
     break;
 
   case 68: /* token_decls: token_decls "<tag>" token_decl.1  */
-#line 537 "src/parse-gram.y"
     {
       (yyval.token_decls) = symbol_list_append ((yyvsp[-2].token_decls), symbol_list_type_set ((yyvsp[0].yykind_80), (yyvsp[-1].TAG)));
     }
-#line 2574 "src/parse-gram.c"
     break;
 
   case 69: /* token_decl.1: token_decl  */
-#line 544 "src/parse-gram.y"
                             { (yyval.yykind_80) = symbol_list_sym_new ((yyvsp[0].token_decl), (yylsp[0])); }
-#line 2580 "src/parse-gram.c"
     break;
 
   case 70: /* token_decl.1: token_decl.1 token_decl  */
-#line 545 "src/parse-gram.y"
                             { (yyval.yykind_80) = symbol_list_append ((yyvsp[-1].yykind_80), symbol_list_sym_new ((yyvsp[0].token_decl), (yylsp[0]))); }
-#line 2586 "src/parse-gram.c"
     break;
 
   case 71: /* token_decl: id int.opt alias  */
-#line 550 "src/parse-gram.y"
     {
       (yyval.token_decl) = (yyvsp[-2].id);
       symbol_class_set ((yyvsp[-2].id), current_class, (yylsp[-2]), true);
@@ -2595,266 +2365,190 @@ yyreduce:
       if ((yyvsp[0].alias))
         symbol_make_alias ((yyvsp[-2].id), (yyvsp[0].alias), (yylsp[0]));
     }
-#line 2599 "src/parse-gram.c"
     break;
 
   case 72: /* int.opt: %empty  */
-#line 562 "src/parse-gram.y"
           { (yyval.yykind_82) = -1; }
-#line 2605 "src/parse-gram.c"
     break;
 
   case 74: /* alias: %empty  */
-#line 568 "src/parse-gram.y"
                  { (yyval.alias) = NULL; }
-#line 2611 "src/parse-gram.c"
     break;
 
   case 75: /* alias: string_as_id  */
-#line 569 "src/parse-gram.y"
                  { (yyval.alias) = (yyvsp[0].string_as_id); }
-#line 2617 "src/parse-gram.c"
     break;
 
   case 76: /* alias: "translatable string"  */
-#line 571 "src/parse-gram.y"
     {
       (yyval.alias) = symbol_get ((yyvsp[0].TSTRING), (yylsp[0]));
       symbol_class_set ((yyval.alias), token_sym, (yylsp[0]), false);
       (yyval.alias)->translatable = true;
     }
-#line 2627 "src/parse-gram.c"
     break;
 
   case 77: /* token_decls_for_prec: token_decl_for_prec.1  */
-#line 589 "src/parse-gram.y"
     {
       (yyval.token_decls_for_prec) = (yyvsp[0].yykind_85);
     }
-#line 2635 "src/parse-gram.c"
     break;
 
   case 78: /* token_decls_for_prec: "<tag>" token_decl_for_prec.1  */
-#line 593 "src/parse-gram.y"
     {
       (yyval.token_decls_for_prec) = symbol_list_type_set ((yyvsp[0].yykind_85), (yyvsp[-1].TAG));
     }
-#line 2643 "src/parse-gram.c"
     break;
 
   case 79: /* token_decls_for_prec: token_decls_for_prec "<tag>" token_decl_for_prec.1  */
-#line 597 "src/parse-gram.y"
     {
       (yyval.token_decls_for_prec) = symbol_list_append ((yyvsp[-2].token_decls_for_prec), symbol_list_type_set ((yyvsp[0].yykind_85), (yyvsp[-1].TAG)));
     }
-#line 2651 "src/parse-gram.c"
     break;
 
   case 80: /* token_decl_for_prec.1: token_decl_for_prec  */
-#line 605 "src/parse-gram.y"
     { (yyval.yykind_85) = symbol_list_sym_new ((yyvsp[0].token_decl_for_prec), (yylsp[0])); }
-#line 2657 "src/parse-gram.c"
     break;
 
   case 81: /* token_decl_for_prec.1: token_decl_for_prec.1 token_decl_for_prec  */
-#line 607 "src/parse-gram.y"
     { (yyval.yykind_85) = symbol_list_append ((yyvsp[-1].yykind_85), symbol_list_sym_new ((yyvsp[0].token_decl_for_prec), (yylsp[0]))); }
-#line 2663 "src/parse-gram.c"
     break;
 
   case 82: /* token_decl_for_prec: id int.opt  */
-#line 612 "src/parse-gram.y"
     {
       (yyval.token_decl_for_prec) = (yyvsp[-1].id);
       symbol_class_set ((yyvsp[-1].id), token_sym, (yylsp[-1]), false);
       if (0 <= (yyvsp[0].yykind_82))
         symbol_code_set ((yyvsp[-1].id), (yyvsp[0].yykind_82), (yylsp[0]));
     }
-#line 2674 "src/parse-gram.c"
     break;
 
   case 84: /* symbol_decls: symbol_decl.1  */
-#line 629 "src/parse-gram.y"
     {
       (yyval.symbol_decls) = (yyvsp[0].yykind_88);
     }
-#line 2682 "src/parse-gram.c"
     break;
 
   case 85: /* symbol_decls: "<tag>" symbol_decl.1  */
-#line 633 "src/parse-gram.y"
     {
       (yyval.symbol_decls) = symbol_list_type_set ((yyvsp[0].yykind_88), (yyvsp[-1].TAG));
     }
-#line 2690 "src/parse-gram.c"
     break;
 
   case 86: /* symbol_decls: symbol_decls "<tag>" symbol_decl.1  */
-#line 637 "src/parse-gram.y"
     {
       (yyval.symbol_decls) = symbol_list_append ((yyvsp[-2].symbol_decls), symbol_list_type_set ((yyvsp[0].yykind_88), (yyvsp[-1].TAG)));
     }
-#line 2698 "src/parse-gram.c"
     break;
 
   case 87: /* symbol_decl.1: symbol  */
-#line 645 "src/parse-gram.y"
     {
       symbol_class_set ((yyvsp[0].symbol), pct_type_sym, (yylsp[0]), false);
       (yyval.yykind_88) = symbol_list_sym_new ((yyvsp[0].symbol), (yylsp[0]));
     }
-#line 2707 "src/parse-gram.c"
     break;
 
   case 88: /* symbol_decl.1: symbol_decl.1 symbol  */
-#line 650 "src/parse-gram.y"
     {
       symbol_class_set ((yyvsp[0].symbol), pct_type_sym, (yylsp[0]), false);
       (yyval.yykind_88) = symbol_list_append ((yyvsp[-1].yykind_88), symbol_list_sym_new ((yyvsp[0].symbol), (yylsp[0])));
     }
-#line 2716 "src/parse-gram.c"
     break;
 
   case 93: /* rules_or_grammar_declaration: error ";"  */
-#line 671 "src/parse-gram.y"
     {
       yyerrok;
     }
-#line 2724 "src/parse-gram.c"
     break;
 
   case 94: /* $@4: %empty  */
-#line 677 "src/parse-gram.y"
                          { current_lhs ((yyvsp[-1].id_colon), (yylsp[-1]), (yyvsp[0].yykind_95)); }
-#line 2730 "src/parse-gram.c"
     break;
 
   case 95: /* rules: id_colon named_ref.opt $@4 ":" rhses.1  */
-#line 678 "src/parse-gram.y"
     {
       /* Free the current lhs. */
       current_lhs (0, (yylsp[-4]), 0);
     }
-#line 2739 "src/parse-gram.c"
     break;
 
   case 96: /* rhses.1: rhs  */
-#line 685 "src/parse-gram.y"
                      { grammar_current_rule_end ((yylsp[0])); }
-#line 2745 "src/parse-gram.c"
     break;
 
   case 97: /* rhses.1: rhses.1 "|" rhs  */
-#line 686 "src/parse-gram.y"
                      { grammar_current_rule_end ((yylsp[0])); }
-#line 2751 "src/parse-gram.c"
     break;
 
   case 99: /* rhs: %empty  */
-#line 693 "src/parse-gram.y"
     { grammar_current_rule_begin (current_lhs_symbol, current_lhs_loc,
                                   current_lhs_named_ref); }
-#line 2758 "src/parse-gram.c"
     break;
 
   case 100: /* rhs: rhs symbol named_ref.opt  */
-#line 696 "src/parse-gram.y"
     { grammar_current_rule_symbol_append ((yyvsp[-1].symbol), (yylsp[-1]), (yyvsp[0].yykind_95)); }
-#line 2764 "src/parse-gram.c"
     break;
 
   case 101: /* rhs: rhs tag.opt "{...}" named_ref.opt  */
-#line 698 "src/parse-gram.y"
     { grammar_current_rule_action_append ((yyvsp[-1].BRACED_CODE), (yylsp[-1]), (yyvsp[0].yykind_95), (yyvsp[-2].yykind_74)); }
-#line 2770 "src/parse-gram.c"
     break;
 
   case 102: /* rhs: rhs "%?{...}"  */
-#line 700 "src/parse-gram.y"
     { grammar_current_rule_predicate_append ((yyvsp[0].BRACED_PREDICATE), (yylsp[0])); }
-#line 2776 "src/parse-gram.c"
     break;
 
   case 103: /* rhs: rhs "%empty"  */
-#line 702 "src/parse-gram.y"
     { grammar_current_rule_empty_set ((yylsp[0])); }
-#line 2782 "src/parse-gram.c"
     break;
 
   case 104: /* rhs: rhs "%prec" symbol  */
-#line 704 "src/parse-gram.y"
     { grammar_current_rule_prec_set ((yyvsp[0].symbol), (yylsp[0])); }
-#line 2788 "src/parse-gram.c"
     break;
 
   case 105: /* rhs: rhs "%dprec" "integer literal"  */
-#line 706 "src/parse-gram.y"
     { grammar_current_rule_dprec_set ((yyvsp[0].INT_LITERAL), (yylsp[0])); }
-#line 2794 "src/parse-gram.c"
     break;
 
   case 106: /* rhs: rhs "%merge" "<tag>"  */
-#line 708 "src/parse-gram.y"
     { grammar_current_rule_merge_set ((yyvsp[0].TAG), (yylsp[0])); }
-#line 2800 "src/parse-gram.c"
     break;
 
   case 107: /* rhs: rhs "%expect" "integer literal"  */
-#line 710 "src/parse-gram.y"
     { grammar_current_rule_expect_sr ((yyvsp[0].INT_LITERAL), (yylsp[0])); }
-#line 2806 "src/parse-gram.c"
     break;
 
   case 108: /* rhs: rhs "%expect-rr" "integer literal"  */
-#line 712 "src/parse-gram.y"
     { grammar_current_rule_expect_rr ((yyvsp[0].INT_LITERAL), (yylsp[0])); }
-#line 2812 "src/parse-gram.c"
     break;
 
   case 109: /* named_ref.opt: %empty  */
-#line 716 "src/parse-gram.y"
                  { (yyval.yykind_95) = NULL; }
-#line 2818 "src/parse-gram.c"
     break;
 
   case 110: /* named_ref.opt: "[identifier]"  */
-#line 717 "src/parse-gram.y"
                  { (yyval.yykind_95) = named_ref_new ((yyvsp[0].BRACKETED_ID), (yylsp[0])); }
-#line 2824 "src/parse-gram.c"
     break;
 
   case 112: /* value: %empty  */
-#line 750 "src/parse-gram.y"
           { (yyval.value).kind = muscle_keyword; (yyval.value).chars = ""; }
-#line 2830 "src/parse-gram.c"
     break;
 
   case 113: /* value: "identifier"  */
-#line 751 "src/parse-gram.y"
           { (yyval.value).kind = muscle_keyword; (yyval.value).chars = (yyvsp[0].ID); }
-#line 2836 "src/parse-gram.c"
     break;
 
   case 114: /* value: "string"  */
-#line 752 "src/parse-gram.y"
           { (yyval.value).kind = muscle_string;  (yyval.value).chars = unquote ((yyvsp[0].STRING)); gram_scanner_last_string_free ();}
-#line 2842 "src/parse-gram.c"
     break;
 
   case 115: /* value: "{...}"  */
-#line 753 "src/parse-gram.y"
           { (yyval.value).kind = muscle_code;    (yyval.value).chars = strip_braces ((yyvsp[0].BRACED_CODE)); gram_scanner_last_string_free (); }
-#line 2848 "src/parse-gram.c"
     break;
 
   case 116: /* id: "identifier"  */
-#line 766 "src/parse-gram.y"
     { (yyval.id) = symbol_from_uniqstr ((yyvsp[0].ID), (yylsp[0])); }
-#line 2854 "src/parse-gram.c"
     break;
 
   case 117: /* id: "character literal"  */
-#line 768 "src/parse-gram.y"
     {
       const char *var = "api.token.raw";
       if (current_class == nterm_sym)
@@ -2875,35 +2569,27 @@ yyreduce:
       symbol_class_set ((yyval.id), token_sym, (yylsp[0]), false);
       symbol_code_set ((yyval.id), (yyvsp[0].CHAR_LITERAL), (yylsp[0]));
     }
-#line 2879 "src/parse-gram.c"
     break;
 
   case 118: /* id_colon: "identifier:"  */
-#line 791 "src/parse-gram.y"
            { (yyval.id_colon) = symbol_from_uniqstr ((yyvsp[0].ID_COLON), (yylsp[0])); }
-#line 2885 "src/parse-gram.c"
     break;
 
   case 121: /* string_as_id: "string"  */
-#line 803 "src/parse-gram.y"
     {
       (yyval.string_as_id) = symbol_get ((yyvsp[0].STRING), (yylsp[0]));
       symbol_class_set ((yyval.string_as_id), token_sym, (yylsp[0]), false);
     }
-#line 2894 "src/parse-gram.c"
     break;
 
   case 123: /* epilogue.opt: "%%" "epilogue"  */
-#line 812 "src/parse-gram.y"
     {
       muscle_code_grow ("epilogue", translate_code ((yyvsp[0].EPILOGUE), (yylsp[0]), true), (yylsp[0]));
       code_scanner_last_string_free ();
     }
-#line 2903 "src/parse-gram.c"
     break;
 
 
-#line 2907 "src/parse-gram.c"
 
         default: break;
       }
@@ -3118,7 +2804,6 @@ yyreturn:
   return yyresult;
 }
 
-#line 818 "src/parse-gram.y"
 
 
 int
