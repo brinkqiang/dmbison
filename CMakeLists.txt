@@ -134,7 +134,7 @@ ELSE(UNIX)
       ${CMAKE_CURRENT_SOURCE_DIR}/src/AnnotationList.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/InadequacyList.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/Sbitset.c
-      ${CMAKE_CURRENT_SOURCE_DIR}/src/asscc.c
+      ${CMAKE_CURRENT_SOURCE_DIR}/src/assoc.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/clcsure.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ccmplain.c
       ${CMAKE_CURRENT_SOURCE_DIR}/src/ccnflicts.c
