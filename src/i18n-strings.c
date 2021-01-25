@@ -35,4 +35,4 @@ static const char *const msgid[] =
   {
     N_("end of file"),
     N_("invalid token")
-  }
+  };
