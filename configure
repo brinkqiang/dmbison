@@ -4086,7 +4086,7 @@ ac_configure="$SHELL $ac_aux_dir/configure"  # Please don't use this var.
 # releases, we want to be able run make dist without being required to
 # add a bogus NEWS entry.  In that case, the version string
 # automatically contains a dash, which we also let disable gnits.
-am__api_version='1.16'
+am__api_version='1.15'
 
 # Find a good install program.  We prefer a C program (faster),
 # so one script is as good as another.  But avoid the broken or
