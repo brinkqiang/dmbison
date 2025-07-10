@@ -135,7 +135,7 @@ else(UNIX)
 
    add_library(bison_src ${bison_src})
 
-   ExeImport("tools" "libbison.a;liby.a;bison_src")
+   ExeImport("tools" "bison_src")
 
    target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
    target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
