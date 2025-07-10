@@ -142,7 +142,9 @@ else(UNIX)
     list(FILTER common_src EXCLUDE REGEX "/lib/relocwrapper\\.c$")
     list(FILTER common_src EXCLUDE REGEX "/lib/argmatch\\.c$")
     list(FILTER common_src EXCLUDE REGEX "sig")
+    list(FILTER common_src EXCLUDE REGEX "spawn")
 
+    
     add_library(bison_src ${bison_src} ${common_src})
 
     ExeImport("tools" "bison_src")
