@@ -142,8 +142,6 @@ else(UNIX)
 
    ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
 
-   add_dependencies(bison_src libtextstyle_local_build)
-
     # ----------------------------------------------------
     #      从本地源码压缩包构建 libtextstyle
     # ----------------------------------------------------
