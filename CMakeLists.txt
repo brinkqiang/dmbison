@@ -135,7 +135,8 @@ else(UNIX)
     file(GLOB_RECURSE common_src
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/*.c"
     )
-    
+    list(FILTER common_src EXCLUDE REGEX "windows-")
+
     add_library(bison_src ${bison_src} ${common_src})
 
     ExeImport("tools" "bison_src")
