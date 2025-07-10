@@ -136,10 +136,28 @@ else(UNIX)
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/*.c"
     )
     # -- 平台相关文件 --
-    list(FILTER common_src EXCLUDE REGEX "(windows-|msvc-|os2-)")
 
     # -- spawn (进程创建) 系列函数 --
-    list(FILTER common_src EXCLUDE REGEX "/spawn") # 匹配 spawn.c, spawni.c, spawnattr_... 等
+
+    set(spawn_exclude_list
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawni.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawnp.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn_faction_addclose.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn_faction_adddup2.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn_faction_addopen.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn_faction_destroy.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn_faction_init.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawnattr_destroy.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawnattr_init.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawnattr_setflags.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawnattr_setpgroup.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/spawnattr_setsigmask.c"
+    )
+
+    list(REMOVE_ITEM common_src ${spawn_exclude_list})
+
+
+    list(FILTER common_src EXCLUDE REGEX "(windows-|msvc-|os2-)")
 
     # -- strerror (错误信息) 系列函数 --
     list(FILTER common_src EXCLUDE REGEX "/strerror") # 匹配 strerror.c, strerror_r.c 等
