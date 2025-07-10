@@ -178,6 +178,7 @@ else(UNIX)
         INTERFACE_INCLUDE_DIRECTORIES "${LIBTEXTSTYLE_INSTALL_DIR}/include"
     )
     add_dependencies(bison_src libtextstyle_from_archive)
+    add_dependencies(libtextstyle_from_archive libtextstyle_imported)
 
     target_link_libraries(bison_src PRIVATE libtextstyle_imported)
 endif()
