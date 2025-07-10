@@ -24,23 +24,23 @@ if(WIN32)
 
     LibImportExclude("common" "win/dmbison/common" "${CommonExcludeList}")
 
-    target_include_directories(common PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
+    target_include_directories(common BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 
     set(libbisonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/main.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-code.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-gram.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-skel.c$")
 
     LibImportExclude("libbison" "win/dmbison/src" "${libbisonExcludeList}")
 
-    target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison")
-    target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
-    target_include_directories(libbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
+    target_include_directories(libbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison")
+    target_include_directories(libbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
+    target_include_directories(libbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 
     target_link_libraries(libbison common)
 
     add_definitions(-D_CONSOLE)
     ExeImport("wintools" "libbison;common")
-    target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison")
-    target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
-    target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
+    target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison")
+    target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
+    target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 else(UNIX)
    set(bison_src
         src/AnnotationList.c
@@ -137,8 +137,8 @@ else(UNIX)
 
    ExeImport("tools" "libbison.a;liby.a;bison_src")
 
-   target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
-   target_include_directories(bison_src PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
+   target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
+   target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
    ModuleConfigure(dmbison_autogen ${CMAKE_CURRENT_SOURCE_DIR})
 
