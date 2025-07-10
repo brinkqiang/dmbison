@@ -42,6 +42,32 @@ if(WIN32)
     target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
     target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 else(UNIX)
+
+    include(ExternalProject)
+
+    # 定义源码路径和安装路径
+    # 核心改动在这里，指向您的新目录
+    set(GETTEXT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/depends/gettext) 
+    set(LIBTEXTSTYLE_INSTALL_DIR ${CMAKE_BINARY_DIR}/libtextstyle_install)
+
+    ExternalProject_Add(
+        libtextstyle_local_build
+        
+        # 指定本地源码目录
+        SOURCE_DIR        ${GETTEXT_SOURCE_DIR}
+        
+        # 配置、构建、安装命令保持不变
+        CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
+        BUILD_COMMAND     make -j4
+        INSTALL_COMMAND   make install
+        INSTALL_DIR       ${LIBTEXTSTYLE_INSTALL_DIR}
+        
+        # 告诉 ExternalProject 这是本地源码，不需要下载
+        DOWNLOAD_COMMAND ""
+        UPDATE_COMMAND ""
+        PATCH_COMMAND ""
+    )
+
    set(bison_src
         src/AnnotationList.c
         src/AnnotationList.h
@@ -142,53 +168,6 @@ else(UNIX)
 
    ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
 
+   add_dependencies(bison_src libtextstyle_local_build)
 
-    # 1. 引入 ExternalProject 模块
-    include(ExternalProject)
-
-    # 2. 定义 libtextstyle 的安装目录，这会在你的构建目录中创建
-    set(LIBTEXTSTYLE_INSTALL_DIR ${CMAKE_BINARY_DIR}/libtextstyle_install)
-
-    # 3. 配置 ExternalProject 来下载、编译和安装 gettext
-    ExternalProject_Add(
-        libtextstyle_external         # 为这个外部项目步骤起一个唯一的名字
-        
-        # Git 仓库信息
-        GIT_REPOSITORY https://git.savannah.gnu.org/git/gettext.git
-        GIT_TAG        v0.22.5         # 指定一个稳定的版本号以确保可重复构建
-        
-        # 配置步骤：运行 Autotools 的 configure 脚本
-        # --prefix: 指定安装到我们设定的目录
-        # --disable-shared: 只构建静态库 (.a)，这通常更容易集成
-        # --without-libxml2: 避免不必要的依赖
-        CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
-        
-        # 构建步骤：运行 make (使用 -j 并行编译以加快速度)
-        BUILD_COMMAND     make -j4
-        
-        # 安装步骤：运行 make install
-        INSTALL_COMMAND   make install
-        
-        # 指定我们之前定义的安装目录
-        INSTALL_DIR       ${LIBTEXTSTYLE_INSTALL_DIR}
-    )
-
-    # 4. 创建一个 IMPORTED 目标来代表我们刚刚编译好的 libtextstyle
-    #    这是使用 ExternalProject 的关键步骤
-
-    # 首先，声明一个依赖关系，确保在编译 my_app 之前，libtextstyle_external 已经完成
-    add_dependencies(bison_src libtextstyle_external)
-
-    # 创建一个 CMake 目标来“指向”编译好的静态库文件
-    add_library(libtextstyle_imported STATIC IMPORTED GLOBAL) # GLOBAL 使得在子目录也可见
-
-    # 设置这个目标的属性：库文件的位置和头文件的位置
-    set_target_properties(libtextstyle_imported PROPERTIES
-        IMPORTED_LOCATION         "${LIBTEXTSTYLE_INSTALL_DIR}/lib/libtextstyle.a"
-        INTERFACE_INCLUDE_DIRECTORIES "${LIBTEXTSTYLE_INSTALL_DIR}/include"
-    )
-
-
-    # 5. 将你的程序链接到这个新创建的 IMPORTED 目标上
-    target_link_libraries(bison_src PRIVATE libtextstyle_imported)
 endif()
