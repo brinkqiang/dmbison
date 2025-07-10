@@ -57,7 +57,7 @@ else(UNIX)
         SOURCE_DIR        ${GETTEXT_SOURCE_DIR}
         
         # 配置、构建、安装命令保持不变
-        CONFIGURE_COMMAND ./autogen.sh && <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
+        CONFIGURE_COMMAND <SOURCE_DIR>/autogen.sh && <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
         BUILD_COMMAND     make -j4
         INSTALL_COMMAND   make install
         INSTALL_DIR       ${LIBTEXTSTYLE_INSTALL_DIR}
