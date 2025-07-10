@@ -140,6 +140,6 @@ else(UNIX)
    target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
    target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
-   ModuleConfigure(dmbison ${CMAKE_CURRENT_SOURCE_DIR})
+   ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
 
 endif()
