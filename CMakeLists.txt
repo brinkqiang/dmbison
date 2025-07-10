@@ -146,10 +146,15 @@ else(UNIX)
     list(FILTER common_src EXCLUDE REGEX "strerror")
     list(FILTER common_src EXCLUDE REGEX "wait")
 
-    
-    add_library(bison_src ${bison_src} ${common_src})
+    set(missing_common_src
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/argmatch.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn-pipe.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/wait-process.c
+    )
 
-    ExeImport("tools" "bison_src")
+    add_library(bison_src ${bison_src} ${common_src} ${missing_common_src})
+
+    ExeImport("tools" "bison_src;tinfo")
 
     target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
     target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
