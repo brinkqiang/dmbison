@@ -156,11 +156,7 @@ else(UNIX)
     # -- 库内自带的测试主程序 --
     list(FILTER common_src EXCLUDE REGEX "/lib/main\\.c$")
 
-    add_library(bison_src ${bison_src} ${common_src})
 
-    target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
-
-    ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
 
     # ----------------------------------------------------
     # 从本地源码压缩包构建 libtextstyle
@@ -214,11 +210,12 @@ else(UNIX)
     # ----------------------------------------------------
     # 步骤 3: 创建 bison_src 库，并以最清晰的方式链接依赖
     # ----------------------------------------------------
-    add_library(bison_src STATIC
-        ${bison_src}
-        ${common_src}
-    )
-    
+    add_library(bison_src ${bison_src} ${common_src})
+
+    target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
+
+    ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
+
     # ✅ 现在，bison_src 只需要链接到一个目标，所有依赖都会被自动传递
     target_link_libraries(bison_src PUBLIC gettext_bundle)
 
