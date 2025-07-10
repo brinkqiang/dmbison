@@ -42,32 +42,6 @@ if(WIN32)
     target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
     target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 else(UNIX)
-
-    include(ExternalProject)
-
-    # 定义源码路径和安装路径
-    # 核心改动在这里，指向您的新目录
-    set(GETTEXT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/depends/gettext) 
-    set(LIBTEXTSTYLE_INSTALL_DIR ${CMAKE_BINARY_DIR}/libtextstyle_install)
-
-    ExternalProject_Add(
-        libtextstyle_local_build
-        
-        # 指定本地源码目录
-        SOURCE_DIR        ${GETTEXT_SOURCE_DIR}
-        
-        # 配置、构建、安装命令保持不变
-        CONFIGURE_COMMAND <SOURCE_DIR>/gitsub.sh pull && <SOURCE_DIR>/autogen.sh && <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
-        BUILD_COMMAND     make -j4
-        INSTALL_COMMAND   make install
-        INSTALL_DIR       ${LIBTEXTSTYLE_INSTALL_DIR}
-        
-        # 告诉 ExternalProject 这是本地源码，不需要下载
-        DOWNLOAD_COMMAND ""
-        UPDATE_COMMAND ""
-        PATCH_COMMAND ""
-    )
-
    set(bison_src
         src/AnnotationList.c
         src/AnnotationList.h
@@ -169,5 +143,42 @@ else(UNIX)
    ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
 
    add_dependencies(bison_src libtextstyle_local_build)
+
+    # ----------------------------------------------------
+    #      从本地源码压缩包构建 libtextstyle
+    # ----------------------------------------------------
+    include(ExternalProject)
+
+    # 1. 定义压缩包的路径
+    set(GETTEXT_ARCHIVE ${CMAKE_CURRENT_SOURCE_DIR}/depends/gettext-0.21.tar.gz)
+
+    # 2. 定义安装目录
+    set(LIBTEXTSTYLE_INSTALL_DIR ${CMAKE_BINARY_DIR}/libtextstyle_install)
+
+    ExternalProject_Add(
+        libtextstyle_from_archive      # 换个新名字，以示区别
+        
+        # 核心改动：使用 URL 指向本地压缩包
+        URL               ${GETTEXT_ARCHIVE}
+        
+        # 最佳实践：提供文件的 SHA256 哈希值以确保文件完整性
+        # gettext-0.21.tar.gz 的 SHA256 哈希值如下：
+        URL_HASH          SHA256=C77D0DA3102AEC9C07F43671E60611EBFF89A996EF159497CE8E59D075786B12
+        
+        # 配置、构建、安装命令与之前完全相同
+        # ExternalProject 会先自动解压，然后在解压后的目录中执行这些命令
+        CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
+        BUILD_COMMAND     make -j4
+        INSTALL_COMMAND   make install
+        INSTALL_DIR       ${LIBTEXTSTYLE_INSTALL_DIR}
+    )
+
+    add_library(libtextstyle_imported STATIC IMPORTED GLOBAL)
+    set_target_properties(libtextstyle_imported PROPERTIES
+        IMPORTED_LOCATION         "${LIBTEXTSTYLE_INSTALL_DIR}/lib/libtextstyle.a"
+        INTERFACE_INCLUDE_DIRECTORIES "${LIBTEXTSTYLE_INSTALL_DIR}/include"
+    )
+
+    target_link_libraries(bison_src PRIVATE libtextstyle_imported)
 
 endif()
