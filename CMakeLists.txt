@@ -144,6 +144,7 @@ else(UNIX)
     list(FILTER common_src EXCLUDE REGEX "sig")
     list(FILTER common_src EXCLUDE REGEX "spawn")
     list(FILTER common_src EXCLUDE REGEX "strerror")
+    list(FILTER common_src EXCLUDE REGEX "wait")
 
     
     add_library(bison_src ${bison_src} ${common_src})
