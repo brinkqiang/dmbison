@@ -177,7 +177,7 @@ else(UNIX)
     )
 
     # 2. 像之前一样，设置构建依赖和链接关系
-    add_dependencies(bison_src PUBLIC libtextstyle_from_archive)
+    add_dependencies(bison_src libtextstyle_from_archive)
     target_link_libraries(bison_src PUBLIC libtextstyle_imported)
 
     # 3. ✅ 将头文件目录直接提供给最终使用的目标
