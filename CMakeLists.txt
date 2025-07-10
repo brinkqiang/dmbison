@@ -138,6 +138,8 @@ else(UNIX)
     list(FILTER common_src EXCLUDE REGEX "windows-")
     list(FILTER common_src EXCLUDE REGEX "(windows-|msvc-)")
     list(FILTER common_src EXCLUDE REGEX "/lib/main\\.c$")
+    list(FILTER common_src EXCLUDE REGEX "/lib/fsync\\.c$")
+
     add_library(bison_src ${bison_src} ${common_src})
 
     ExeImport("tools" "bison_src")
