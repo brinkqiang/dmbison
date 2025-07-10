@@ -135,24 +135,28 @@ else(UNIX)
     file(GLOB_RECURSE common_src
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/*.c"
     )
-    list(FILTER common_src EXCLUDE REGEX "windows-")
-    list(FILTER common_src EXCLUDE REGEX "(windows-|msvc-)")
+    # -- 平台相关文件 --
+    list(FILTER common_src EXCLUDE REGEX "(windows-|msvc-|os2-)")
+
+    # -- spawn (进程创建) 系列函数 --
+    list(FILTER common_src EXCLUDE REGEX "/spawn") # 匹配 spawn.c, spawni.c, spawnattr_... 等
+
+    # -- strerror (错误信息) 系列函数 --
+    list(FILTER common_src EXCLUDE REGEX "/strerror") # 匹配 strerror.c, strerror_r.c 等
+
+    # -- signal (信号处理) 系列函数 --
+    list(FILTER common_src EXCLUDE REGEX "/(sigaction|sigprocmask)\\.c$")
+
+    # -- 目录操作系列函数 --
+    list(FILTER common_src EXCLUDE REGEX "/(opendir|readdir|rewinddir)\\.c$")
+
+    # -- 其他单个的兼容性文件 --
+    list(FILTER common_src EXCLUDE REGEX "/(access|at-func|fsync|math|pipe|relocwrapper|waitpid)\\.c$")
+
+    # -- 库内自带的测试主程序 --
     list(FILTER common_src EXCLUDE REGEX "/lib/main\\.c$")
-    list(FILTER common_src EXCLUDE REGEX "/lib/fsync\\.c$")
-    list(FILTER common_src EXCLUDE REGEX "/lib/relocwrapper\\.c$")
-    list(FILTER common_src EXCLUDE REGEX "/lib/argmatch\\.c$")
-    list(FILTER common_src EXCLUDE REGEX "sig")
-    list(FILTER common_src EXCLUDE REGEX "spawn")
-    list(FILTER common_src EXCLUDE REGEX "strerror")
-    list(FILTER common_src EXCLUDE REGEX "wait")
 
-    set(missing_common_src
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/argmatch.c
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn-pipe.c
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/wait-process.c
-    )
-
-    add_library(bison_src ${bison_src} ${common_src} ${missing_common_src})
+    add_library(bison_src ${bison_src} ${common_src})
 
     ExeImport("tools" "bison_src;tinfo")
 
