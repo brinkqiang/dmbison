@@ -16,7 +16,7 @@ pushd build
 
 cmake -DCMAKE_BUILD_TYPE=relwithdebinfo ..
 cmake --build . --config relwithdebinfo
-echo sudo apt install libtextstyle-dev
+echo sudo apt install libgettextpo-dev
 
 popd
 
