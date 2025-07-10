@@ -141,7 +141,9 @@ else(UNIX)
     list(FILTER common_src EXCLUDE REGEX "/lib/fsync\\.c$")
     list(FILTER common_src EXCLUDE REGEX "/lib/relocwrapper\\.c$")
     list(FILTER common_src EXCLUDE REGEX "/lib/argmatch\\.c$")
+    list(FILTER common_src EXCLUDE REGEX "/lib/sigaction\\.c$")
 
+    
     add_library(bison_src ${bison_src} ${common_src} ${missing_common_src})
 
     # 添加 bison 解析器生成的文件
