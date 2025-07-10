@@ -132,7 +132,7 @@ else(UNIX)
         src/uniqstr.c
         src/uniqstr.h
     )
-    file(GLOB common_src
+    file(GLOB_RECURSE common_src
         "${CMAKE_CURRENT_SOURCE_DIR}/lib/*.c"
     )
     
