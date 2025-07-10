@@ -177,12 +177,12 @@ else(UNIX)
     )
 
     # 2. 像之前一样，设置构建依赖和链接关系
-    add_dependencies(bison_src libtextstyle_from_archive)
-    target_link_libraries(bison_src PRIVATE libtextstyle_imported)
+    add_dependencies(bison_src PUBLIC libtextstyle_from_archive)
+    target_link_libraries(bison_src PUBLIC libtextstyle_imported)
 
     # 3. ✅ 将头文件目录直接提供给最终使用的目标
     # 因为有 add_dependencies, 编译 bison_src 时, 这个目录必然已经存在
-    target_include_directories(bison_src PRIVATE 
+    target_include_directories(bison_src PUBLIC 
         ${LIBTEXTSTYLE_INSTALL_DIR}/include
     )
 endif()
