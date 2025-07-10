@@ -169,7 +169,6 @@ else(UNIX)
         # ExternalProject 会先自动解压，然后在解压后的目录中执行这些命令
         CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
         BUILD_COMMAND     make -j4
-        INSTALL_COMMAND   make install
         INSTALL_DIR       ${LIBTEXTSTYLE_INSTALL_DIR}
     )
 
@@ -178,7 +177,7 @@ else(UNIX)
         IMPORTED_LOCATION         "${LIBTEXTSTYLE_INSTALL_DIR}/lib/libtextstyle.a"
         INTERFACE_INCLUDE_DIRECTORIES "${LIBTEXTSTYLE_INSTALL_DIR}/include"
     )
+    add_dependencies(bison_src libtextstyle_from_archive)
 
     target_link_libraries(bison_src PRIVATE libtextstyle_imported)
-
 endif()
