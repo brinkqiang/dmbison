@@ -158,9 +158,6 @@ else(UNIX)
 
     add_library(bison_src ${bison_src} ${common_src})
 
-    ExeImport("tools" "bison_src;tinfo")
-
-    target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
     target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
     ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
@@ -169,43 +166,74 @@ else(UNIX)
     # 从本地源码压缩包构建 libtextstyle
     # ----------------------------------------------------
     include(ExternalProject)
-
-    # 1. 定义压缩包的路径
-    set(GETTEXT_ARCHIVE ${CMAKE_CURRENT_SOURCE_DIR}/depends/gettext-0.21.tar.gz)
-
-    # 2. 定义安装目录
     set(LIBTEXTSTYLE_INSTALL_DIR ${CMAKE_BINARY_DIR}/libtextstyle_install)
 
     ExternalProject_Add(
-        libtextstyle_from_archive # 换个新名字，以示区别
-
-        # 核心改动：使用 URL 指向本地压缩包
-        URL ${GETTEXT_ARCHIVE}
-
-        # 最佳实践：提供文件的 SHA256 哈希值以确保文件完整性
-        # gettext-0.21.tar.gz 的 SHA256 哈希值如下：
+        libtextstyle_from_archive
+        # ... (所有 ExternalProject_Add 的参数不变) ...
+        URL ${CMAKE_CURRENT_SOURCE_DIR}/depends/gettext-0.21.tar.gz
         URL_HASH SHA256=C77D0DA3102AEC9C07F43671E60611EBFF89A996EF159497CE8E59D075786B12
-
-        # 配置、构建、安装命令与之前完全相同
-        # ExternalProject 会先自动解压，然后在解压后的目录中执行这些命令
         CONFIGURE_COMMAND <SOURCE_DIR>/configure --prefix=<INSTALL_DIR> --disable-shared --without-libxml2
-        BUILD_COMMAND make -j4
-        INSTALL_COMMAND make install
-        INSTALL_DIR ${LIBTEXTSTYLE_INSTALL_DIR}
+        BUILD_COMMAND     make -j${CMAKE_BUILD_PARALLEL_LEVEL}
+        INSTALL_COMMAND   make install
+        INSTALL_DIR       ${LIBTEXTSTYLE_INSTALL_DIR}
     )
 
-    add_library(libtextstyle_imported STATIC IMPORTED GLOBAL)
+    # ✅ 2a. 为 gettext 生成的每一个库文件，创建独立的 IMPORTED 目标
+    add_library(libtextstyle_imported STATIC IMPORTED)
     set_target_properties(libtextstyle_imported PROPERTIES
         IMPORTED_LOCATION "${LIBTEXTSTYLE_INSTALL_DIR}/lib/libtextstyle.a"
     )
-
-    # 2. 像之前一样，设置构建依赖和链接关系
-    add_dependencies(bison_src libtextstyle_from_archive)
-    target_link_libraries(bison_src PUBLIC libtextstyle_imported)
-
-    # 3. ✅ 将头文件目录直接提供给最终使用的目标
-    # 因为有 add_dependencies, 编译 bison_src 时, 这个目录必然已经存在
-    target_include_directories(bison_src PUBLIC
-        ${LIBTEXTSTYLE_INSTALL_DIR}/include
+    add_library(libasprintf_imported STATIC IMPORTED)
+    set_target_properties(libasprintf_imported PROPERTIES
+        IMPORTED_LOCATION "${LIBTEXTSTYLE_INSTALL_DIR}/lib/libasprintf.a"
     )
+    add_library(libgettextpo_imported STATIC IMPORTED)
+    set_target_properties(libgettextpo_imported PROPERTIES
+        IMPORTED_LOCATION "${LIBTEXTSTYLE_INSTALL_DIR}/lib/libgettextpo.a"
+    )
+
+    # ✅ 2b. 创建一个 INTERFACE 库作为“捆绑包”或“代言人”
+    add_library(gettext_bundle INTERFACE)
+
+    # ✅ 2c. 将所有依赖信息（头文件、库文件）附加到这个“代言人”上
+    target_include_directories(gettext_bundle INTERFACE
+        "${LIBTEXTSTYLE_INSTALL_DIR}/include"
+    )
+    target_link_libraries(gettext_bundle INTERFACE
+        libtextstyle_imported
+        libasprintf_imported
+        libgettextpo_imported
+        tinfo # libtextstyle 的下游依赖也在这里封装好
+    )
+    
+    # ✅ 2d. 确保在尝试使用这些库之前，ExternalProject 已经构建完成
+    add_dependencies(gettext_bundle libtextstyle_from_archive)
+
+
+    # ----------------------------------------------------
+    # 步骤 3: 创建 bison_src 库，并以最清晰的方式链接依赖
+    # ----------------------------------------------------
+    add_library(bison_src STATIC
+        ${bison_src}
+        ${common_src}
+    )
+    
+    # ✅ 现在，bison_src 只需要链接到一个目标，所有依赖都会被自动传递
+    target_link_libraries(bison_src PUBLIC gettext_bundle)
+
+    # 为 bison_src 添加它自己需要的头文件路径
+    target_include_directories(bison_src PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/lib"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+    )
+
+    # ----------------------------------------------------
+    # 步骤 4: 创建最终的可执行文件
+    # ----------------------------------------------------
+    # 移除你自定义的 ExeImport, 使用标准的 add_executable
+    add_executable(dmbison src/main.c)
+
+    # dmbison 只需要链接到 bison_src，就会通过传递性依赖自动获得所有需要的库
+    target_link_libraries(dmbison PRIVATE bison_src)
 endif()
