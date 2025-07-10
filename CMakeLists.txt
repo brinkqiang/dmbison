@@ -95,7 +95,7 @@ else(UNIX)
         src/nullable.h
         src/output.c
         src/output.h
-        src/parse-gram.y
+        src/parse-gram.c
         src/parse-simulation.c
         src/parse-simulation.h
         src/print-graph.c
