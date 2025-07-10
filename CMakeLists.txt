@@ -95,7 +95,7 @@ else(UNIX)
         src/nullable.h
         src/output.c
         src/output.h
-        src/parse-gram.y
+        src/parse-gram.c
         src/parse-simulation.c
         src/parse-simulation.h
         src/print-graph.c
@@ -141,27 +141,23 @@ else(UNIX)
     list(FILTER common_src EXCLUDE REGEX "/lib/fsync\\.c$")
     list(FILTER common_src EXCLUDE REGEX "/lib/relocwrapper\\.c$")
     list(FILTER common_src EXCLUDE REGEX "/lib/argmatch\\.c$")
-    list(FILTER common_src EXCLUDE REGEX "/lib/sigaction\\.c$")
+    list(FILTER common_src EXCLUDE REGEX "sig")
+    list(FILTER common_src EXCLUDE REGEX "spawn")
+    list(FILTER common_src EXCLUDE REGEX "strerror")
+    list(FILTER common_src EXCLUDE REGEX "wait")
 
-    
+    set(missing_common_src
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/argmatch.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/spawn-pipe.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/wait-process.c
+    )
+
     add_library(bison_src ${bison_src} ${common_src} ${missing_common_src})
 
-
-    # 将生成的解析器文件添加到库中
-    target_sources(bison_src PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/parse-gram.c)
-
-    # 查找并链接 ncurses 库
-    find_package(PkgConfig REQUIRED)
-    pkg_check_modules(NCURSES REQUIRED ncurses)
-
-    ExeImport("tools" "bison_src;${NCURSES_LIBRARIES}")
+    ExeImport("tools" "bison_src;tinfo")
 
     target_include_directories(dmbison BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
     target_include_directories(bison_src BEFORE PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
-
-    # 添加 ncurses 头文件路径
-    target_include_directories(bison_src PUBLIC ${NCURSES_INCLUDE_DIRS})
-    target_compile_options(bison_src PUBLIC ${NCURSES_CFLAGS_OTHER})
 
     ModuleConfigure(bison_src ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -202,9 +198,6 @@ else(UNIX)
     # 2. 像之前一样，设置构建依赖和链接关系
     add_dependencies(bison_src libtextstyle_from_archive)
     target_link_libraries(bison_src PUBLIC libtextstyle_imported)
-
-    # 链接 ncurses 库
-    target_link_libraries(bison_src PUBLIC ${NCURSES_LIBRARIES})
 
     # 3. ✅ 将头文件目录直接提供给最终使用的目标
     # 因为有 add_dependencies, 编译 bison_src 时, 这个目录必然已经存在
