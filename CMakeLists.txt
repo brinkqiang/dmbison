@@ -2,31 +2,31 @@ cmake_minimum_required(VERSION 3.21)
 
 PROJECT(dmbison)
 
-LIST(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-INCLUDE(cmake/ModuleImport.cmake)
-INCLUDE(cmake/ModuleCompileOptions.cmake)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+include(cmake/ModuleImport.cmake)
+include(cmake/ModuleCompileOptions.cmake)
 ModuleSetCompileOptions()
 
-SET(DMBISON_VERSION_MAJOR "1")
-SET(DMBISON_VERSION_MINOR "0")
-SET(DMBISON_VERSION_PATCH "1")
-SET(DMBISON_VERSION "${DMBISON_VERSION_MAJOR}.${DMBISON_VERSION_MINOR}.${DMBISON_VERSION_PATCH}")
+set(DMBISON_VERSION_MAJOR "1")
+set(DMBISON_VERSION_MINOR "0")
+set(DMBISON_VERSION_PATCH "1")
+set(DMBISON_VERSION "${DMBISON_VERSION_MAJOR}.${DMBISON_VERSION_MINOR}.${DMBISON_VERSION_PATCH}")
 
-MESSAGE(STATUS "VERSION: ${DMBISON_VERSION}")
+message(STATUS "VERSION: ${DMBISON_VERSION}")
 
-OPTION(USE_DMBISON "use dmbison" OFF)
+option(USE_DMBISON "use dmbison" OFF)
 
-IF(WIN32)
+if(WIN32)
     add_definitions(-D_LIB)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     add_definitions(-DYY_NO_UNISTD_H)
-    SET(CommonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common/regexec.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common/regcomp.c")
+    set(CommonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common/regexec.c" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common/regcomp.c")
 
     LibImportExclude("common" "win/dmbison/common" "${CommonExcludeList}")
 
     target_include_directories(common PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
 
-    SET(libbisonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/main.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-code.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-gram.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-skel.c$")
+    set(libbisonExcludeList "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/main.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-code.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-gram.c$" "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src/scan-skel.c$")
 
     LibImportExclude("libbison" "win/dmbison/src" "${libbisonExcludeList}")
 
@@ -41,7 +41,7 @@ IF(WIN32)
     target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison")
     target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/src")
     target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/win/dmbison/common")
-ELSE(UNIX)
+else(UNIX)
    set(bison_src
         src/AnnotationList.c
         src/AnnotationList.h
@@ -140,16 +140,6 @@ ELSE(UNIX)
    target_include_directories(dmbison PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
    target_include_directories(bison_src PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib" "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
-   add_custom_target(dmbison_autogen
-   COMMAND ./configure
-   COMMAND make
-   COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/lib/libbison.a ${LIBRARY_OUTPUT_PATH}
-   COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/lib/liby.a ${LIBRARY_OUTPUT_PATH}
-   COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/src/bison ${EXECUTABLE_OUTPUT_PATH}
-   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-   COMMENT "Running dmbison configure"
-   )
+   ModuleConfigure(dmbison_autogen ${CMAKE_CURRENT_SOURCE_DIR})
 
-   ADD_DEPENDENCIES(dmbison dmbison_autogen)
-
-ENDIF(WIN32)
+endif()
