@@ -146,13 +146,6 @@ else(UNIX)
     
     add_library(bison_src ${bison_src} ${common_src} ${missing_common_src})
 
-    # 添加 bison 解析器生成的文件
-    add_custom_command(
-        OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/src/parse-gram.c
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/parse-gram.y
-        COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/src && bison -d -o parse-gram.c parse-gram.y
-        COMMENT "Generating parser from parse-gram.y"
-    )
 
     # 将生成的解析器文件添加到库中
     target_sources(bison_src PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/parse-gram.c)
